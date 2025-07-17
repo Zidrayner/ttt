@@ -1,0 +1,1 @@
+PRICE = [{'label': 'Premium Access', 'amount': 100000}]
