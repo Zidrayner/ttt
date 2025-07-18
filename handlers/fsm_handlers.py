@@ -1,7 +1,7 @@
 import os
 
 from aiogram import Router, F
-from aiogram.filters import CommandStart, Command, StateFilter
+from aiogram.filters import Command, StateFilter
 from aiogram.types import Message, ReplyKeyboardRemove, PreCheckoutQuery
 from aiogram.fsm.state import State, StatesGroup, default_state
 from aiogram.fsm.context import FSMContext
@@ -11,7 +11,7 @@ from keyboards.fsm_kb import make_fsm_kb
 
 fsm_router = Router()
 
-room_chs = ['Обычный', 'Люксовый', 'Президентский']
+room_chs = ['ДА', 'НЕТ']
 
 class ReservState(StatesGroup):
     time = State()
@@ -64,7 +64,7 @@ async def payment_handler(message: Message, state: FSMContext):
     await message.answer(f'Бронь:\n'
                          f'Дата: {data["time"]}\n'
                          f'Количество человек: {data["num"]}\n'
-                         f'Место у окна: {data["room"]}')
+                         f'Место у окна: {data["room"]}', reply_markup=ReplyKeyboardRemove())
     await message.bot.send_invoice(
         chat_id=message.chat.id,
         title='Бронь',

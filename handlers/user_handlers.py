@@ -12,6 +12,7 @@ load_dotenv()
 
 @user.message(CommandStart())
 async def start(message: Message):
-    await message.answer('Hi')
+    await message.answer('Здраствуйте, если хотите забронировать '
+                         'столик напишите команду /book')
 
 
